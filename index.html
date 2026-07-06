@@ -1,30 +1,1202 @@
+import React, { useState, useEffect, useRef } from "react";
+import { 
+  Sparkles, 
+  Calendar, 
+  Send, 
+  BarChart3, 
+  Lock, 
+  Cloud, 
+  ArrowRight, 
+  ChevronDown, 
+  Check, 
+  Mail, 
+  Github, 
+  MessageSquare, 
+  Rocket, 
+  Workflow, 
+  Activity, 
+  CheckCircle2, 
+  MapPin, 
+  User, 
+  Globe, 
+  Laptop, 
+  Cpu, 
+  Layers, 
+  ExternalLink 
+} from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Samtech Flow | Automated Intelligence Systems</title>
-    <!-- Material Symbols Outlined -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-    <!-- Progressive Web App Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#4f46e5" />
-    <link rel="apple-touch-icon" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=192&q=80" />
-    <script type="module" crossorigin src="/assets/index-Bx-fKUDT.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DxQhk5cL.css">
-  <script src="/_aistudio-iframe.js"></script></head>
-  <body>
-    <div id="root"></div>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js")
-            .then((reg) => console.log("SAMTECH Flow Service Worker Registered", reg))
-            .catch((err) => console.error("Service Worker registration failed", err));
-        });
+interface LandingViewProps {
+  onLaunchApp: () => void;
+}
+
+export default function LandingView({ onLaunchApp }: LandingViewProps) {
+  const [activeSection, setActiveSection] = useState("home");
+  const [isYearly, setIsYearly] = useState(false);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  
+  // Contact Form State
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  // References for scroll spy
+  const sectionRefs = {
+    home: useRef<HTMLDivElement>(null),
+    features: useRef<HTMLDivElement>(null),
+    "how-it-works": useRef<HTMLDivElement>(null),
+    tech: useRef<HTMLDivElement>(null),
+    pricing: useRef<HTMLDivElement>(null),
+    contact: useRef<HTMLDivElement>(null),
+  };
+
+  // Scroll spy to highlight active section in Navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 120; // offset for sticky navbar
+
+      for (const [section, ref] of Object.entries(sectionRefs)) {
+        const element = ref.current;
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          const elementTop = top + window.scrollY;
+          const elementBottom = bottom + window.scrollY;
+
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
       }
-    </script>
-  </body>
-</html>
+    };
 
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: keyof typeof sectionRefs) => {
+    const element = sectionRefs[sectionId].current;
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(sectionId);
+    }
+  };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactName || !contactEmail || !contactMessage) return;
+
+    setIsSubmitting(true);
+    // Simulate premium dashboard secure transmission telemetry
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitSuccess(true);
+      // Reset form
+      setContactName("");
+      setContactEmail("");
+      setContactMessage("");
+    }, 1800);
+  };
+
+  const toggleFaq = (index: number) => {
+    setExpandedFaq(expandedFaq === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      q: "How does Telegram automation work?",
+      a: "SAMTECH FLOW integrates securely with the Telegram Bot API. By supplying your standard HTTP API Bot Token, our engine links up directly to your desired channels, dispatching scheduled drafts and content nodes fully automatically with real-time logging."
+    },
+    {
+      q: "Is my data secure with SamTech Flow?",
+      a: "Yes. All security coordinates, including your bot tokens, credentials, and scheduled queues, are encrypted and stored locally in standard browser sandboxes or server-side environment variables. We never store or track your personal API payloads."
+    },
+    {
+      q: "Can I schedule posts in advance?",
+      a: "Absolutely! The system features a multi-timezone, smart scheduling queue that allows you to specify precise execution dates, hours, and delivery methods. The core daemon handles background dispatching precisely when scheduled."
+    },
+    {
+      q: "Does it support multiple Telegram channels?",
+      a: "Yes! While our Standard free tier supports 1 active channel link, upgrading to the Pro tier unlocks unlimited bot channels, multi-device sync, and advanced AI-assisted automation layers."
+    },
+    {
+      q: "Is there a free plan available?",
+      a: "Yes, our Standard free plan is permanently available. It includes standard draft management, manual single-node scheduling, and basic analytics to let you test the core ecosystem coordinates."
+    }
+  ];
+
+  const coreFeatures = [
+    {
+      title: "AI Content Generation",
+      desc: "Create and refine high-quality posts instantly using premium model intelligence, tuned for social audiences.",
+      icon: <Sparkles className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Smart Scheduling System",
+      desc: "Plan and queue content weeks in advance across multiple channels, automatically managing delivery pipelines.",
+      icon: <Calendar className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Telegram Bot Automation",
+      desc: "Connect your custom bots to push articles, posts, and announcements automatically to active channels.",
+      icon: <Send className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Draft Management System",
+      desc: "Save, structure, and revise your content in a centralized repository with visual metadata states.",
+      icon: <Workflow className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Analytics Dashboard",
+      desc: "Track engagement logs, monitor telemetry success rates, and export post records seamlessly.",
+      icon: <BarChart3 className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Secure Authentication System",
+      desc: "Enterprise-grade local security controls to keep your tokens and workspace data private.",
+      icon: <Lock className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Cloud Sync Across Devices",
+      desc: "Access your dashboard workspace, scheduled queues, and content logs from any device, anywhere.",
+      icon: <Cloud className="w-5 h-5 text-indigo-400" />
+    },
+    {
+      title: "Real-time System Monitoring",
+      desc: "Check system health and keep tabs on successful automation logs with our detailed event viewer.",
+      icon: <Activity className="w-5 h-5 text-indigo-400" />
+    }
+  ];
+
+  const testimonials = [
+    {
+      quote: "SamTech Flow saved me 10+ hours every week! The AI generation combined with automation lets me scale my publishing effortlessly.",
+      author: "Rizwan Ahmed",
+      role: "Content Creator",
+      img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
+    },
+    {
+      quote: "The automation is flawless. My channel grows daily. Having scheduled queues publish exactly on time without manual work is incredible.",
+      author: "Ayesha Khan",
+      role: "Digital Marketer",
+      img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80"
+    },
+    {
+      quote: "The analytics help me create better content. The interface is exceptionally beautiful and clean, making automation a delightful experience.",
+      author: "Hamza Ali",
+      role: "Tech Blogger",
+      img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80"
+    },
+    {
+      quote: "Finally, a tool that does exactly what I need. No bloated options, just pure content creation and effortless Telegram dispatching.",
+      author: "Sana Malik",
+      role: "Entrepreneur",
+      img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen text-zinc-100 bg-[#050508] font-sans selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden relative">
+      
+      {/* 🌌 Atmospheric Backdrop (Planetary grid and moving gradients) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.15, 1],
+            x: [0, 40, 0],
+            y: [0, -30, 0]
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 right-[-10%] w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-indigo-500/10 via-purple-500/5 to-transparent blur-[140px]"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            x: [0, -40, 0],
+            y: [0, 40, 0]
+          }}
+          transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-20 left-[-15%] w-[800px] h-[800px] rounded-full bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-transparent blur-[130px]"
+        />
+        
+        {/* Wireframe Rotating Globe/Hemisphere behind Hero */}
+        <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[650px] h-[650px] md:w-[900px] md:h-[900px] opacity-[0.25] border border-indigo-500/10 rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: "240s" }}>
+          <div className="w-[85%] h-[85%] border border-purple-500/10 rounded-full flex items-center justify-center">
+            <div className="w-[70%] h-[70%] border border-indigo-500/5 border-dashed rounded-full" />
+          </div>
+          <svg className="absolute inset-0 w-full h-full text-indigo-500/10" viewBox="0 0 100 100">
+            <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" strokeWidth="0.05" />
+            <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" strokeWidth="0.05" />
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.05" />
+            <circle cx="50" cy="50" r="30" fill="none" stroke="currentColor" strokeWidth="0.05" />
+          </svg>
+        </div>
+
+        {/* Ambient Grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293707_1px,transparent_1px),linear-gradient(to_bottom,#1f293707_1px,transparent_1px)] bg-[size:48px_48px]" />
+      </div>
+
+      {/* 🧭 Header Navigation (Sticky, dynamic scroll-spy indicator) */}
+      <header className="sticky top-0 w-full z-50 backdrop-blur-xl bg-[#050508]/85 border-b border-zinc-900/80 h-16 transition-all duration-300">
+        <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6 lg:px-12">
+          
+          {/* Logo with matching SAMTECH logo style */}
+          <div className="flex items-center gap-3 select-none cursor-pointer" onClick={() => scrollToSection("home")}>
+            <div className="w-8.5 h-8.5 bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 rounded-xl flex items-center justify-center border border-indigo-500/35 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+              <svg className="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M2 12a10 10 0 0 1 18-6M22 12a10 10 0 0 1-18 6" className="animate-spin" style={{ animationDuration: "14s" }} />
+                <circle cx="12" cy="12" r="2.5" className="fill-indigo-400" />
+              </svg>
+            </div>
+            <h1 className="font-display text-sm font-extrabold tracking-[0.25em] text-[#f4f4f5] uppercase">
+              SAMTECH <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">FLOW</span>
+            </h1>
+          </div>
+
+          {/* Desktop Navigation Link System */}
+          <nav className="hidden md:flex items-center gap-7 lg:gap-10">
+            {[
+              { id: "home", label: "Home" },
+              { id: "features", label: "Features" },
+              { id: "how-it-works", label: "How It Works" },
+              { id: "tech", label: "Technology" },
+              { id: "pricing", label: "Pricing" },
+              { id: "contact", label: "Contact" }
+            ].map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id as any)}
+                className={`text-[11px] font-display font-black tracking-widest uppercase transition-all relative py-1.5 focus:outline-none cursor-pointer ${
+                  activeSection === link.id 
+                    ? "text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]" 
+                    : "text-zinc-400 hover:text-zinc-200"
+                }`}
+              >
+                {link.label}
+                {activeSection === link.id && (
+                  <motion.div 
+                    layoutId="activeLandingNavLine"
+                    className="absolute bottom-0 left-0 w-full h-[2px] bg-indigo-500 rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* App Launcher Call-To-Action */}
+          <div>
+            <button
+              onClick={onLaunchApp}
+              className="py-2.5 px-5 bg-[#050508]/60 hover:bg-indigo-650/10 border border-indigo-500/30 hover:border-indigo-500 text-indigo-300 hover:text-white font-display font-extrabold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(99,102,241,0.35)] focus:outline-none flex items-center gap-2"
+            >
+              <span>Launch App</span>
+              <Rocket className="w-3.5 h-3.5 animate-pulse" />
+            </button>
+          </div>
+
+        </div>
+      </header>
+
+      {/* 🧠 HERO SECTION */}
+      <section 
+        id="home" 
+        ref={sectionRefs.home} 
+        className="min-h-screen flex flex-col justify-center items-center pt-24 pb-16 px-6 lg:px-12 relative"
+      >
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center space-y-6 md:space-y-8 relative z-10">
+          
+          {/* Animated Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-500/10 border border-indigo-500/20 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.1)] select-none"
+          >
+            <span className="w-2 h-2 bg-indigo-400 rounded-full animate-ping" />
+            <span className="text-[10px] font-sans font-bold tracking-[0.2em] uppercase text-indigo-300">
+              AI POWERED AUTOMATION
+            </span>
+          </motion.div>
+
+          {/* Hero Core Display */}
+          <div className="space-y-4">
+            <motion.h2 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white"
+            >
+              SamTech <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-blue-400 font-extrabold drop-shadow-[0_0_35px_rgba(99,102,241,0.3)]">Flow</span>
+            </motion.h2>
+            
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-indigo-200/90 font-display font-medium text-lg md:text-2xl tracking-[0.18em] uppercase"
+            >
+              Build Once. Automate Forever.
+            </motion.h3>
+          </div>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl"
+          >
+            An intelligent content automation platform that helps individuals and businesses create, organize, schedule, and publish content effortlessly across digital pipelines.
+          </motion.p>
+
+          {/* Glowing Action Triggers */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+          >
+            <button
+              onClick={onLaunchApp}
+              className="w-full sm:w-auto py-4 px-8 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all cursor-pointer hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-2.5 focus:outline-none"
+            >
+              <span>LAUNCH APP</span>
+              <Rocket className="w-4 h-4 text-white animate-bounce" style={{ animationDuration: "2.5s" }} />
+            </button>
+            
+            <button
+              onClick={() => scrollToSection("features")}
+              className="w-full sm:w-auto py-4 px-8 bg-zinc-950/70 hover:bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl transition-all cursor-pointer hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2 focus:outline-none"
+            >
+              <span>LEARN MORE</span>
+              <ChevronDown className="w-4 h-4 text-zinc-400" />
+            </button>
+          </motion.div>
+
+        </div>
+
+        {/* Subtle Scroll Down mouse visual */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+          <span className="text-[10px] font-mono tracking-widest text-zinc-500">SCROLL TO DISCOVER</span>
+          <div className="w-5 h-9 rounded-full border border-zinc-700 p-1 flex justify-center">
+            <motion.div 
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 h-2 bg-indigo-500 rounded-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ⚡ WHY SAMTECH FLOW / CARDS GRID SECTION */}
+      <section 
+        id="features" 
+        ref={sectionRefs.features} 
+        className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-900/60"
+      >
+        <div className="text-center mb-16 space-y-4">
+          <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+            WHY SAMTECH FLOW?
+          </span>
+          <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+            Work Smarter. Publish Faster.
+          </h2>
+          <p className="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+            Experience the combined capabilities of a next-gen generator, state managers, and reliable background robot dispatches.
+          </p>
+        </div>
+
+        {/* Feature Bento Grid (6 main cards as represented in mockup) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              title: "AI-Assisted Content",
+              desc: "Generate, refine and organize ideas in seconds with advanced server-side model coordinates.",
+              icon: <Sparkles className="w-6 h-6 text-indigo-400" />
+            },
+            {
+              title: "Smart Scheduling",
+              desc: "Plan content weeks ahead and let the SAMTECH Flow system monitor and handle the rest seamlessly.",
+              icon: <Calendar className="w-6 h-6 text-indigo-400" />
+            },
+            {
+              title: "Telegram Automation",
+              desc: "Publish to your Telegram channels and chat groups automatically, precisely on time.",
+              icon: <Send className="w-6 h-6 text-indigo-400" />
+            },
+            {
+              title: "Analytics & Insights",
+              desc: "Track dispatch performance telemetry and gather clean data-driven logs to optimize growth.",
+              icon: <BarChart3 className="w-6 h-6 text-indigo-400" />
+            },
+            {
+              title: "Secure & Private",
+              desc: "Enterprise-grade local storage mechanisms keep your system credentials encrypted and offline.",
+              icon: <Lock className="w-6 h-6 text-indigo-400" />
+            },
+            {
+              title: "Cloud Sync",
+              desc: "Access your dashboard, saved drafts, and background queue safely from any client device.",
+              icon: <Cloud className="w-6 h-6 text-indigo-400" />
+            }
+          ].map((feat, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="glass-panel p-8 rounded-[28px] border border-white/5 bg-[#121420]/50 hover:bg-[#121420]/80 hover:border-indigo-500/30 shadow-lg relative group overflow-hidden"
+            >
+              {/* Corner accent glow */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/5 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 shadow-sm group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] transition-shadow">
+                {feat.icon}
+              </div>
+
+              <h3 className="font-display font-bold text-lg text-zinc-100 tracking-wide mb-3 uppercase">
+                {feat.title}
+              </h3>
+              
+              <p className="text-zinc-400 text-xs leading-relaxed">
+                {feat.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* 🔁 HOW IT WORKS SECTION */}
+      <section 
+        id="how-it-works" 
+        ref={sectionRefs["how-it-works"]} 
+        className="py-24 px-6 lg:px-12 bg-[#090a10]/40 border-t border-zinc-900/60"
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+              HOW IT WORKS
+            </span>
+            <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+              Simple Steps, Powerful Results.
+            </h2>
+            <p className="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+              Getting started is incredibly quick. Connect your coordinates and let automation manage your pipelines.
+            </p>
+          </div>
+
+          {/* Interactive Flow Diagram with Connecting Lines */}
+          <div className="relative mt-12">
+            
+            {/* Desktop Connecting Line */}
+            <div className="absolute top-[40px] left-[10%] right-[10%] h-[2px] bg-gradient-to-r from-indigo-500/10 via-purple-500/30 to-indigo-500/10 hidden lg:block z-0" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 relative z-10">
+              {[
+                {
+                  step: "1",
+                  title: "Create Account",
+                  desc: "Sign up instantly and access your customized telemetry dashboard.",
+                  color: "border-indigo-500/35"
+                },
+                {
+                  step: "2",
+                  title: "Connect Telegram Bot",
+                  desc: "Input your HTTP API Bot token secure link under ConfigView.",
+                  color: "border-purple-500/35"
+                },
+                {
+                  step: "3",
+                  title: "Create Content",
+                  desc: "Generate smart posts via AI assistant or compose drafts.",
+                  color: "border-indigo-500/35"
+                },
+                {
+                  step: "4",
+                  title: "Schedule Post",
+                  desc: "Choose dates, channels, and platform coordinates in the planner.",
+                  color: "border-purple-500/35"
+                },
+                {
+                  step: "5",
+                  title: "Auto Publish",
+                  desc: "Relax as our automatic node daemon dispatches items accurately.",
+                  color: "border-indigo-500/35"
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="flex flex-col items-center text-center space-y-4 group">
+                  <div className={`w-20 h-20 rounded-full bg-zinc-950 border-2 ${item.color} flex items-center justify-center font-display font-black text-lg text-zinc-100 shadow-lg group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.25)] transition-all duration-300 relative z-10`}>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">{item.step}</span>
+                  </div>
+                  
+                  <div className="space-y-1">
+                    <h3 className="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">
+                      {item.title}
+                    </h3>
+                    <p className="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 🚀 POWERFUL FEATURES BENTO GRID DETAIL */}
+      <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-900/60">
+        <div className="text-center mb-16 space-y-4">
+          <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+            POWERFUL FEATURES
+          </span>
+          <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+            Everything You Need in One Platform
+          </h2>
+          <p className="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+            A comprehensive overview of our automated content ecosystem coordinates.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {coreFeatures.map((feat, idx) => (
+            <div 
+              key={idx}
+              className="glass-panel p-6 rounded-3xl border border-white/5 bg-[#0e1017]/80 hover:bg-[#0e1017] hover:border-indigo-500/20 transition-all shadow-md flex flex-col justify-between"
+            >
+              <div className="flex items-center gap-3.5 mb-4">
+                <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/15 flex items-center justify-center shrink-0">
+                  {feat.icon}
+                </div>
+                <h3 className="font-display font-extrabold text-xs text-zinc-200 uppercase tracking-wider">
+                  {feat.title}
+                </h3>
+              </div>
+              <p className="text-zinc-400 text-[11px] leading-relaxed">
+                {feat.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 🧪 TECHNOLOGY SECTION */}
+      <section 
+        id="tech" 
+        ref={sectionRefs.tech} 
+        className="py-20 px-6 lg:px-12 bg-zinc-950/40 border-t border-zinc-900/60"
+      >
+        <div className="max-w-7xl mx-auto text-center space-y-12">
+          <div className="space-y-4">
+            <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+              BUILT WITH MODERN TECHNOLOGY
+            </span>
+            <h2 className="font-display font-medium text-lg text-zinc-400 uppercase tracking-widest">
+              High Performance Architecture Stack
+            </h2>
+          </div>
+
+          {/* Technology Badges Matrix */}
+          <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-6 max-w-4xl mx-auto">
+            {[
+              { name: "React", icon: <Layers className="w-4 h-4 text-[#61dafb]" /> },
+              { name: "TypeScript", icon: <Cpu className="w-4 h-4 text-[#3178c6]" /> },
+              { name: "Vite", icon: <Sparkles className="w-4 h-4 text-[#646cff]" /> },
+              { name: "Capacitor", icon: <Laptop className="w-4 h-4 text-[#119eff]" /> },
+              { name: "Google AI Studio", icon: <Cpu className="w-4 h-4 text-[#4285f4]" /> },
+              { name: "Telegram Bot API", icon: <Send className="w-4 h-4 text-[#229ed9]" /> },
+              { name: "Cloud Run", icon: <Globe className="w-4 h-4 text-[#34a853]" /> },
+              { name: "GitHub", icon: <Github className="w-4 h-4 text-white" /> }
+            ].map((tech, idx) => (
+              <div 
+                key={idx} 
+                className="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md transition-all flex items-center gap-3 text-xs font-mono tracking-wide text-zinc-300 uppercase select-none"
+              >
+                {tech.icon}
+                <span>{tech.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 💬 TESTIMONIAL / COMMUNITY SECTION */}
+      <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-900/60">
+        <div className="text-center mb-16 space-y-4">
+          <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+            LOVED BY CREATORS
+          </span>
+          <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+            Trusted by People Who Build & Create
+          </h2>
+          <p className="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+            Read experience logs from administrators using SAMTECH FLOW content pipelines.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((test, idx) => (
+            <div 
+              key={idx}
+              className="glass-panel p-6 rounded-[28px] border border-white/5 bg-[#121420]/30 hover:bg-[#121420]/60 transition-all flex flex-col justify-between shadow-lg relative overflow-hidden"
+            >
+              <div className="space-y-4">
+                {/* Visual quote indicator */}
+                <div className="text-4xl font-serif text-indigo-500/20 leading-none select-none">“</div>
+                <p className="text-zinc-300 text-xs leading-relaxed italic">
+                  {test.quote}
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3.5 mt-6 pt-5 border-t border-zinc-900">
+                <img 
+                  src={test.img} 
+                  alt={test.author} 
+                  className="w-9 h-9 rounded-full object-cover border border-indigo-500/20 shrink-0"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="overflow-hidden">
+                  <h4 className="font-display font-extrabold text-xs text-zinc-100 uppercase tracking-wide">
+                    {test.author}
+                  </h4>
+                  <p className="text-[10px] text-zinc-500 font-mono">
+                    {test.role}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 💰 PRICING PLANS */}
+      <section 
+        id="pricing" 
+        ref={sectionRefs.pricing} 
+        className="py-24 px-6 lg:px-12 bg-[#090a10]/40 border-t border-zinc-900/60"
+      >
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+              PRICING PLANS
+            </span>
+            <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+              Choose the subscription coordinates that fit your workflow scale. No hidden configurations.
+            </p>
+
+            {/* Monthly / Yearly Toggle Selector */}
+            <div className="pt-6 flex items-center justify-center gap-3 select-none">
+              <span className={`text-xs font-semibold ${!isYearly ? 'text-zinc-200' : 'text-zinc-500'}`}>Monthly</span>
+              <button
+                type="button"
+                onClick={() => setIsYearly(!isYearly)}
+                className="w-12 h-6.5 rounded-full bg-zinc-900 border border-zinc-850 p-1 flex items-center relative cursor-pointer focus:outline-none"
+              >
+                <motion.div 
+                  layout
+                  className="w-4.5 h-4.5 rounded-full bg-indigo-500"
+                  animate={{ x: isYearly ? 20 : 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                />
+              </button>
+              <span className={`text-xs font-semibold flex items-center gap-1.5 ${isYearly ? 'text-indigo-400' : 'text-zinc-500'}`}>
+                Yearly
+                <span className="text-[9px] bg-indigo-500/15 text-indigo-400 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                  Save 20%
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto mt-12">
+            
+            {/* Free Plan */}
+            <div className="glass-panel p-8 rounded-[32px] border border-white/5 bg-zinc-950/40 flex flex-col justify-between relative overflow-hidden">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-display font-black text-xs text-zinc-400 uppercase tracking-widest">Free Plan</h3>
+                  <div className="flex items-baseline gap-1 mt-3">
+                    <span className="text-4xl font-display font-black text-zinc-100">$0</span>
+                    <span className="text-xs text-zinc-500">/ month</span>
+                  </div>
+                </div>
+
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  Excellent option for starting content creation and testing out Telegram Bot manual execution.
+                </p>
+
+                <div className="space-y-3.5 pt-4">
+                  {[
+                    "Create & schedule posts",
+                    "Telegram integration",
+                    "Basic analytics and history",
+                    "1 Active Channel link"
+                  ].map((feat, i) => (
+                    <div key={i} className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-zinc-500 shrink-0" />
+                      <span className="text-xs text-zinc-300">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={onLaunchApp}
+                className="w-full mt-8 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-display font-black text-xs tracking-wider rounded-xl transition-all cursor-pointer focus:outline-none"
+              >
+                GET STARTED
+              </button>
+            </div>
+
+            {/* Pro Plan (Glowing Premium) */}
+            <div className="glass-panel p-8 rounded-[32px] border border-indigo-500/30 bg-[#0c0d18] flex flex-col justify-between relative shadow-[0_0_40px_rgba(99,102,241,0.15)] overflow-hidden">
+              
+              {/* Popular Tag */}
+              <div className="absolute top-4 right-4 bg-indigo-500 text-white font-sans text-[8px] font-black uppercase px-2.5 py-1 rounded-full tracking-widest shadow-md">
+                POPULAR
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-display font-black text-xs text-indigo-400 uppercase tracking-widest">Pro Plan</h3>
+                  <div className="flex items-baseline gap-1 mt-3">
+                    <span className="text-4xl font-display font-black text-zinc-100">
+                      ${isYearly ? "7.20" : "9"}
+                    </span>
+                    <span className="text-xs text-zinc-500">/ month</span>
+                  </div>
+                </div>
+
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  Ideal for digital marketers, active publishers, and users seeking premium model automation.
+                </p>
+
+                <div className="space-y-3.5 pt-4">
+                  {[
+                    "AI Content Generator access",
+                    "Unlimited scheduling daemon",
+                    "Advanced analytics metrics",
+                    "Multiple channel dispatches",
+                    "Priority server execution"
+                  ].map((feat, i) => (
+                    <div key={i} className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-indigo-400 shrink-0" />
+                      <span className="text-xs text-zinc-200 font-semibold">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={onLaunchApp}
+                className="w-full mt-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-wider rounded-xl shadow-lg transition-all cursor-pointer focus:outline-none hover:shadow-[0_0_15px_rgba(99,102,241,0.4)]"
+              >
+                UPGRADE TO PRO
+              </button>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="glass-panel p-8 rounded-[32px] border border-white/5 bg-zinc-950/40 flex flex-col justify-between relative overflow-hidden">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-display font-black text-xs text-zinc-400 uppercase tracking-widest">Enterprise</h3>
+                  <div className="flex items-baseline gap-1 mt-3">
+                    <span className="text-4xl font-display font-black text-zinc-100">
+                      ${isYearly ? "23.20" : "29"}
+                    </span>
+                    <span className="text-xs text-zinc-500">/ month</span>
+                  </div>
+                </div>
+
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  Custom-tailored content pipeline support for tech business clusters and developer squads.
+                </p>
+
+                <div className="space-y-3.5 pt-4">
+                  {[
+                    "Everything included in Pro",
+                    "Team collaboration permissions",
+                    "Custom backend API integrations",
+                    "Dedicated support administrators",
+                    "Custom contract SLA"
+                  ].map((feat, i) => (
+                    <div key={i} className="flex items-center gap-2.5">
+                      <Check className="w-4 h-4 text-zinc-500 shrink-0" />
+                      <span className="text-xs text-zinc-300">{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={onLaunchApp}
+                className="w-full mt-8 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 font-display font-black text-xs tracking-wider rounded-xl transition-all cursor-pointer focus:outline-none"
+              >
+                CONTACT SALES
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 🙋 FREQUENTLY ASKED QUESTIONS SECTION */}
+      <section className="py-24 px-6 lg:px-12 max-w-4xl mx-auto border-t border-zinc-900/60">
+        <div className="text-center mb-16 space-y-4">
+          <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+            FREQUENTLY ASKED QUESTIONS
+          </span>
+          <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">
+            Got Questions? We've Got Answers.
+          </h2>
+        </div>
+
+        {/* Accordions */}
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = expandedFaq === idx;
+            return (
+              <div 
+                key={idx}
+                className="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300 bg-[#0c0e14]/50"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full py-5 px-6 flex justify-between items-center text-left focus:outline-none select-none cursor-pointer"
+                >
+                  <span className="font-display font-bold text-sm text-zinc-200 tracking-wide">
+                    {faq.q}
+                  </span>
+                  <ChevronDown className={`w-4 h-4 text-indigo-400 transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                    >
+                      <div className="px-6 pb-5 text-xs text-zinc-400 leading-relaxed border-t border-zinc-900 pt-3.5">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 📩 CONTACT SECTION */}
+      <section 
+        id="contact" 
+        ref={sectionRefs.contact} 
+        className="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-900/60"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          
+          {/* Info Side */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <span className="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">
+                GET IN TOUCH
+              </span>
+              <h2 className="font-display font-black text-4xl md:text-5xl text-zinc-100 tracking-tight">
+                Let's Build Something Amazing Together
+              </h2>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-md">
+                Have questions or want to collaborate with our engineering squad? Reach out and we'll get back to your network node promptly.
+              </p>
+            </div>
+
+            {/* Direct coordinate links */}
+            <div className="space-y-4 pt-4 max-w-xs">
+              
+              <div className="flex items-center gap-4 py-3 px-4 bg-zinc-950/50 rounded-2xl border border-zinc-900">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                  <Mail className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider block">Email Us</span>
+                  <a href="mailto:hello.samtechflow@gmail.com" className="text-xs text-zinc-300 font-mono hover:text-indigo-400 transition-all">
+                    hello.samtechflow@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 py-3 px-4 bg-zinc-950/50 rounded-2xl border border-zinc-900">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                  <Send className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider block">Telegram</span>
+                  <a href="https://t.me/samtech_flow" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-300 font-mono hover:text-indigo-400 transition-all flex items-center gap-1">
+                    <span>@samtech_flow</span>
+                    <ExternalLink className="w-2.5 h-2.5 opacity-40" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 py-3 px-4 bg-zinc-950/50 rounded-2xl border border-zinc-900">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                  <Github className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider block">GitHub</span>
+                  <a href="https://github.com/samtechflow" target="_blank" rel="noopener noreferrer" className="text-xs text-zinc-300 font-mono hover:text-indigo-400 transition-all flex items-center gap-1">
+                    <span>github.com/samtechflow</span>
+                    <ExternalLink className="w-2.5 h-2.5 opacity-40" />
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 py-3 px-4 bg-zinc-950/50 rounded-2xl border border-zinc-900">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4 text-indigo-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-wider block">Location</span>
+                  <span className="text-xs text-zinc-300 font-sans flex items-center gap-1">
+                    Earth 🌎
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Form Side */}
+          <div className="glass-panel p-8 md:p-10 rounded-[32px] border border-white/5 bg-[#0a0c12]/90 relative shadow-2xl">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500" />
+            
+            <AnimatePresence mode="wait">
+              {!submitSuccess ? (
+                <motion.form 
+                  key="form"
+                  onSubmit={handleContactSubmit} 
+                  className="space-y-5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
+                      Your Name
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="Jane Doe"
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
+                      className="w-full py-3.5 px-4 rounded-xl bg-zinc-950/50 border border-zinc-850 focus:border-indigo-500 text-xs text-zinc-200 placeholder:text-zinc-650 focus:outline-none transition-all"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
+                      Your Email Address
+                    </label>
+                    <input 
+                      type="email" 
+                      required
+                      placeholder="jane@company.com"
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
+                      className="w-full py-3.5 px-4 rounded-xl bg-zinc-950/50 border border-zinc-850 focus:border-indigo-500 text-xs text-zinc-200 placeholder:text-zinc-650 focus:outline-none transition-all"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
+                      Your Message
+                    </label>
+                    <textarea 
+                      rows={4}
+                      required
+                      placeholder="Describe your query or custom automation specs..."
+                      value={contactMessage}
+                      onChange={(e) => setContactMessage(e.target.value)}
+                      className="w-full py-3.5 px-4 rounded-xl bg-zinc-950/50 border border-zinc-850 focus:border-indigo-500 text-xs text-zinc-200 placeholder:text-zinc-650 focus:outline-none transition-all resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-widest uppercase rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer focus:outline-none"
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                        <span>DISPATCHING COORDINATES...</span>
+                      </span>
+                    ) : (
+                      <>
+                        <Send className="w-3.5 h-3.5" />
+                        <span>SEND MESSAGE</span>
+                      </>
+                    )}
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.div 
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="py-12 text-center flex flex-col items-center space-y-5"
+                >
+                  <div className="w-16 h-16 rounded-full bg-indigo-500/10 border border-indigo-500/35 flex items-center justify-center shadow-[0_0_25px_rgba(99,102,241,0.25)]">
+                    <CheckCircle2 className="w-8 h-8 text-indigo-400" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-display font-black text-lg text-zinc-200 uppercase tracking-widest">Secure Dispatch Active</h3>
+                    <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
+                      Thank you! Your message payload has been validated and queued for review. Our administrator node will establish an uplink with you soon.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitSuccess(false)}
+                    className="py-2.5 px-5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-semibold rounded-lg transition-all cursor-pointer focus:outline-none"
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 🚀 FINAL CTA SECTION */}
+      <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto text-center relative z-10">
+        <div className="glass-panel py-16 px-8 rounded-[48px] border border-white/5 bg-gradient-to-b from-[#0e101b] to-[#06070a] shadow-2xl relative overflow-hidden max-w-5xl mx-auto flex flex-col items-center space-y-6">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293704_1px,transparent_1px),linear-gradient(to_bottom,#1f293704_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
+          
+          <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/25 flex items-center justify-center">
+            <svg className="w-6 h-6 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M2 12a10 10 0 0 1 18-6M22 12a10 10 0 0 1-18 6" />
+              <circle cx="12" cy="12" r="3" className="fill-indigo-400" />
+            </svg>
+          </div>
+
+          <div className="space-y-3">
+            <h2 className="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight leading-none uppercase">
+              Ready to automate your workflow?
+            </h2>
+            <p className="text-zinc-400 text-xs md:text-sm max-w-lg mx-auto leading-relaxed">
+              Start building smarter today. Link your custom bots and experience premium AI scheduling capabilities.
+            </p>
+          </div>
+
+          <button
+            onClick={onLaunchApp}
+            className="py-4 px-10 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-[0.2em] uppercase rounded-2xl shadow-[0_0_35px_rgba(99,102,241,0.55)] transition-all cursor-pointer hover:scale-105 active:scale-95 flex items-center gap-2 focus:outline-none"
+          >
+            <span>LAUNCH SAMTECH FLOW</span>
+            <Rocket className="w-4 h-4 text-white" />
+          </button>
+        </div>
+      </section>
+
+      {/* 📋 SYSTEM FOOTER */}
+      <footer className="border-t border-zinc-900 bg-[#050508] relative z-10 py-16 px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          
+          {/* Logo & Description Column */}
+          <div className="lg:col-span-2 space-y-5">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 rounded-xl flex items-center justify-center border border-indigo-500/35">
+                <svg className="w-4.5 h-4.5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M2 12a10 10 0 0 1 18-6M22 12a10 10 0 0 1-18 6" />
+                  <circle cx="12" cy="12" r="2.5" className="fill-indigo-400" />
+                </svg>
+              </div>
+              <span className="font-display text-xs font-black tracking-[0.25em] text-[#f4f4f5] uppercase">
+                SAMTECH <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">FLOW</span>
+              </span>
+            </div>
+
+            <p className="text-zinc-500 text-[11px] leading-relaxed max-w-sm">
+              An AI-powered automation platform built to schedule, manage, and dispatch digital posts and channel contents with native system security and telemetry.
+            </p>
+
+            <div className="flex items-center gap-3.5">
+              {[
+                { name: "github", icon: <Github className="w-4 h-4" />, link: "https://github.com/samtechflow" },
+                { name: "telegram", icon: <Send className="w-4 h-4" />, link: "https://t.me/samtech_flow" },
+                { name: "email", icon: <Mail className="w-4 h-4" />, link: "mailto:hello.samtechflow@gmail.com" }
+              ].map((item, idx) => (
+                <a 
+                  key={idx}
+                  href={item.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-zinc-950 border border-zinc-900 flex items-center justify-center text-zinc-500 hover:text-indigo-400 hover:border-indigo-500/30 transition-all shadow-sm"
+                  title={item.name}
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Product links */}
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest font-sans">Product</h4>
+            <ul className="space-y-2.5 text-[11px] text-zinc-500 font-sans">
+              <li><button onClick={() => scrollToSection("features")} className="hover:text-indigo-400 hover:underline select-all transition-all cursor-pointer">Features</button></li>
+              <li><button onClick={() => scrollToSection("pricing")} className="hover:text-indigo-400 hover:underline select-all transition-all cursor-pointer">Pricing</button></li>
+              <li><a href="#updates" className="hover:text-indigo-400 hover:underline select-all transition-all">Updates</a></li>
+              <li><a href="#roadmap" className="hover:text-indigo-400 hover:underline select-all transition-all">Roadmap</a></li>
+            </ul>
+          </div>
+
+          {/* Support links */}
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest font-sans">Support</h4>
+            <ul className="space-y-2.5 text-[11px] text-zinc-500 font-sans">
+              <li><a href="#docs" className="hover:text-indigo-400 hover:underline select-all transition-all">Documentation</a></li>
+              <li><a href="#guides" className="hover:text-indigo-400 hover:underline select-all transition-all">Guides</a></li>
+              <li><a href="#help" className="hover:text-indigo-400 hover:underline select-all transition-all">Help Center</a></li>
+              <li><button onClick={() => scrollToSection("contact")} className="hover:text-indigo-400 hover:underline select-all transition-all cursor-pointer">Contact Us</button></li>
+            </ul>
+          </div>
+
+          {/* Company links */}
+          <div className="space-y-4">
+            <h4 className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest font-sans">Company</h4>
+            <ul className="space-y-2.5 text-[11px] text-zinc-500 font-sans">
+              <li><button onClick={() => scrollToSection("home")} className="hover:text-indigo-400 hover:underline select-all transition-all cursor-pointer">About Us</button></li>
+              <li><a href="#careers" className="hover:text-indigo-400 hover:underline select-all transition-all">Careers</a></li>
+              <li><a href="#privacy" className="hover:text-indigo-400 hover:underline select-all transition-all">Privacy Policy</a></li>
+              <li><a href="#terms" className="hover:text-indigo-400 hover:underline select-all transition-all">Terms of Service</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-zinc-900/60 flex flex-col md:flex-row items-center justify-between gap-4">
+          <span className="text-[10px] text-zinc-600 font-mono">
+            &copy; {new Date().getFullYear()} SAMTECH FLOW. All rights reserved.
+          </span>
+          <span className="text-[9px] text-zinc-700 font-mono tracking-widest uppercase font-bold">
+            Automated Intelligence Ecosystem Node
+          </span>
+        </div>
+      </footer>
+
+    </div>
+  );
+}
