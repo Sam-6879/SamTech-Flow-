@@ -3,53 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SamTech Flow | Build Once. Automate Forever.</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,650;0,800;1,400&display=swap" rel="stylesheet">
+    <title>SamTech Flow - Build Once. Automate Forever.</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <style>
+        /* Keeping your original background color and design definitions */
         body {
             background-color: #050508;
-            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-        .glass-panel {
-            background: rgba(18, 20, 32, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        /* Custom scrolling bar visualization */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #050508;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #4f46e5;
+        .font-display {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
         }
     </style>
 </head>
-<body class="text-zinc-100 min-h-screen overflow-x-hidden relative selection:bg-indigo-500/30 selection:text-indigo-200">
-      
+<body class="text-zinc-100 min-h-screen overflow-x-hidden relative selection:bg-indigo-500/30 selection:text-indigo-200 antialiased font-sans">
+
     <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div class="absolute top-10 right-[-10%] w-[800px] h-[800px] rounded-full bg-gradient-to-tr from-indigo-500/10 via-purple-500/5 to-transparent blur-[140px] opacity-75"></div>
         <div class="absolute bottom-20 left-[-15%] w-[800px] h-[800px] rounded-full bg-gradient-to-br from-purple-500/10 via-blue-500/5 to-transparent blur-[130px] opacity-75"></div>
@@ -58,11 +26,6 @@
             <div class="w-[85%] h-[85%] border border-purple-500/10 rounded-full flex items-center justify-center">
                 <div class="w-[70%] h-[70%] border border-indigo-500/5 border-dashed rounded-full"></div>
             </div>
-            <svg class="absolute inset-0 w-full h-full text-indigo-500/10" viewBox="0 0 100 100">
-                <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="0.05" />
-                <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" stroke-width="0.05" />
-                <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="0.05" />
-            </svg>
         </div>
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f293707_1px,transparent_1px),linear-gradient(to_bottom,#1f293707_1px,transparent_1px)] bg-[size:48px_48px]"></div>
     </div>
@@ -70,28 +33,28 @@
     <header class="sticky top-0 w-full z-50 backdrop-blur-xl bg-[#050508]/85 border-b border-zinc-900/80 h-16">
         <div class="max-w-7xl mx-auto h-full flex items-center justify-between px-6 lg:px-12">
             
-            <a href="#home" class="flex items-center gap-3 select-none cursor-pointer">
+            <a href="#home" class="flex items-center gap-3 select-none cursor-pointer no-underline">
                 <div class="w-9 h-9 bg-gradient-to-tr from-indigo-500/10 to-purple-500/10 rounded-xl flex items-center justify-center border border-indigo-500/35 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-                    <i class="fa-solid ref fa-circle-notch text-indigo-400 animate-spin" style="animation-duration: 8s;"></i>
+                    <i class="fa-solid fa-circle-notch text-indigo-400 animate-spin" style="animation-duration: 8s;"></i>
                 </div>
-                <h1 class="font-display text-sm font-extrabold tracking-[0.25em] text-[#f4f4f5] uppercase">
+                <h1 class="font-display text-sm font-extrabold tracking-[0.25em] text-[#f4f4f5] uppercase m-0">
                     SAMTECH <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">FLOW</span>
                 </h1>
             </a>
 
-            <nav class="hidden md:flex items-center gap-6 lg:gap-8" id="nav-links">
-                <a href="#home" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.5)] border-b-2 border-indigo-500">Home</a>
-                <a href="#features" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent">Features</a>
-                <a href="#how-it-works" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent">How It Works</a>
-                <a href="#tech" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent">Technology</a>
-                <a href="#pricing" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent">Pricing</a>
-                <a href="#contact" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all text-zinc-400 hover:text-zinc-200 border-b-2 border-transparent">Contact</a>
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="#home" data-section="home" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.5)] border-indigo-500">home</a>
+                <a href="#features" data-section="features" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent">features</a>
+                <a href="#how-it-works" data-section="how-it-works" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent">how it works</a>
+                <a href="#tech" data-section="tech" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent">tech</a>
+                <a href="#pricing" data-section="pricing" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent">pricing</a>
+                <a href="#contact" data-section="contact" class="nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent">contact</a>
             </nav>
 
             <div>
-                <button onclick="alert('Launching system pipeline metrics...')" class="py-2.5 px-5 bg-[#050508]/60 hover:bg-indigo-650/10 border border-indigo-500/30 hover:border-indigo-500 text-indigo-300 hover:text-white font-display font-extrabold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(99,102,241,0.35)] flex items-center gap-2 focus:outline-none">
+                <button class="py-2.5 px-5 bg-[#050508]/60 hover:bg-indigo-650/10 border border-indigo-500/30 hover:border-indigo-500 text-indigo-300 hover:text-white font-display font-extrabold text-[10px] tracking-widest uppercase rounded-xl transition-all cursor-pointer hover:shadow-[0_0_15px_rgba(99,102,241,0.35)] flex items-center gap-2 focus:outline-none">
                     <span>Launch App</span>
-                    <i class="fa-solid fa-rocket text-xs animate-pulse"></i>
+                    <i class="fa-solid fa-rocket animate-pulse text-[11px]"></i>
                 </button>
             </div>
         </div>
@@ -106,26 +69,26 @@
             </div>
 
             <div class="space-y-4">
-                <h2 class="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white">
+                <h2 class="font-display font-black text-5xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white m-0">
                     SamTech <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-blue-400 drop-shadow-[0_0_35px_rgba(99,102,241,0.3)]">Flow</span>
                 </h2>
-                <h3 class="text-indigo-200/90 font-display font-medium text-lg md:text-2xl tracking-[0.18em] uppercase">
+                <h3 class="text-indigo-200/90 font-display font-medium text-lg md:text-2xl tracking-[0.18em] uppercase m-0">
                     Build Once. Automate Forever.
                 </h3>
             </div>
 
-            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl">
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed max-w-2xl m-0">
                 An intelligent content automation platform that helps individuals and businesses create, organize, schedule, and publish content effortlessly across digital pipelines.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                <button onclick="alert('Routing to app engine...')" class="w-full sm:w-auto py-4 px-8 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-2.5 focus:outline-none">
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
+                <button class="w-full sm:w-auto py-4 px-8 bg-indigo-600 hover:bg-indigo-500 text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl shadow-[0_0_30px_rgba(99,102,241,0.4)] transition-all hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-2.5 focus:outline-none cursor-pointer">
                     <span>LAUNCH APP</span>
-                    <i class="fa-solid fa-rocket animate-bounce"></i>
+                    <i class="fa-solid fa-rocket animate-bounce text-[11px]"></i>
                 </button>
-                <a href="#features" class="w-full sm:w-auto py-4 px-8 bg-zinc-950/70 hover:bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2 focus:outline-none">
+                <a href="#features" class="w-full sm:w-auto py-4 px-8 bg-zinc-950/70 hover:bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white font-display font-black text-xs tracking-[0.15em] uppercase rounded-2xl transition-all hover:scale-[1.01] active:scale-[0.98] flex items-center justify-center gap-2 focus:outline-none no-underline">
                     <span>LEARN MORE</span>
-                    <i class="fa-solid fa-chevron-down text-zinc-400"></i>
+                    <i class="fa-solid fa-chevron-down text-zinc-400 text-[12px]"></i>
                 </a>
             </div>
         </div>
@@ -140,55 +103,55 @@
 
     <section id="features" class="py-24 px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-900/60 relative z-10">
         <div class="text-center mb-16 space-y-4">
-            <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">WHY SAMTECH FLOW?</span>
-            <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">Work Smarter. Publish Faster.</h2>
-            <p class="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+            <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">WHY SAMTECH FLOW?</span>
+            <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight m-0">Work Smarter. Publish Faster.</h2>
+            <p class="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto m-0">
                 Experience the combined capabilities of a next-gen generator, state managers, and reliable background robot dispatches.
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
                     <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">AI-Assisted Content</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Generate, refine and organize ideas in seconds with advanced server-side model coordinates.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">AI-Assisted Content</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Generate, refine and organize ideas in seconds with advanced server-side model coordinates.</p>
             </div>
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
-                    <i class="fa-solid fa-calendar-days text-lg"></i>
+                    <i class="fa-regular fa-calendar-days text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">Smart Scheduling</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Plan content weeks ahead and let the SAMTECH Flow system monitor and handle the rest seamlessly.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">Smart Scheduling</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Plan content weeks ahead and let the SAMTECH Flow system monitor and handle the rest seamlessly.</p>
             </div>
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
                     <i class="fa-solid fa-paper-plane text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">Telegram Automation</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Publish to your Telegram channels and chat groups automatically, precisely on time.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">Telegram Automation</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Publish to your Telegram channels and chat groups automatically, precisely on time.</p>
             </div>
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
                     <i class="fa-solid fa-chart-simple text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">Analytics & Insights</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Track dispatch performance telemetry and gather clean data-driven logs to optimize growth.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">Analytics & Insights</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Track dispatch performance telemetry and gather clean data-driven logs to optimize growth.</p>
             </div>
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
                     <i class="fa-solid fa-lock text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">Secure & Private</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Enterprise-grade local storage mechanisms keep your system credentials encrypted and offline.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">Secure & Private</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Enterprise-grade local storage mechanisms keep your system credentials encrypted and offline.</p>
             </div>
-            <div class="glass-panel p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[28px] border border-white/5 hover:border-indigo-500/30 shadow-lg relative group transition-all duration-300 hover:-translate-y-1">
                 <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.25)] text-indigo-400">
                     <i class="fa-solid fa-cloud text-lg"></i>
                 </div>
-                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase">Cloud Sync</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">Access your dashboard, saved drafts, and background queue safely from any client device.</p>
+                <h3 class="font-display font-bold text-base text-zinc-100 tracking-wide mb-3 uppercase m-0">Cloud Sync</h3>
+                <p class="text-zinc-400 text-xs leading-relaxed m-0">Access your dashboard, saved drafts, and background queue safely from any client device.</p>
             </div>
         </div>
     </section>
@@ -196,9 +159,9 @@
     <section id="how-it-works" class="py-24 px-6 lg:px-12 bg-[#090a10]/40 border-t border-zinc-900/60 relative z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 space-y-4">
-                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">HOW IT WORKS</span>
-                <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">Simple Steps, Powerful Results.</h2>
-                <p class="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto">
+                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">HOW IT WORKS</span>
+                <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight m-0">Simple Steps, Powerful Results.</h2>
+                <p class="text-zinc-500 text-xs md:text-sm max-w-xl mx-auto m-0">
                     Getting started is incredibly quick. Connect your coordinates and let automation manage your pipelines.
                 </p>
             </div>
@@ -212,8 +175,8 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">1</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">Create Account</h3>
-                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">Sign up instantly and access your customized telemetry dashboard.</p>
+                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase m-0">Create Account</h3>
+                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto m-0">Sign up instantly and access your customized telemetry dashboard.</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center space-y-4 group">
@@ -221,8 +184,8 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">2</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">Link Bot</h3>
-                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">Input your HTTP API Bot token secure link under ConfigView.</p>
+                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase m-0">Link Bot</h3>
+                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto m-0">Input your HTTP API Bot token secure link under ConfigView.</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center space-y-4 group">
@@ -230,8 +193,8 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">3</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">Create Content</h3>
-                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">Generate smart posts via AI assistant or compose drafts manually.</p>
+                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase m-0">Create Content</h3>
+                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto m-0">Generate smart posts via AI assistant or compose drafts manually.</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center space-y-4 group">
@@ -239,8 +202,8 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">4</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">Schedule Post</h3>
-                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">Choose dates, channels, and platform coordinates in the planner.</p>
+                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase m-0">Schedule Post</h3>
+                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto m-0">Choose dates, channels, and platform coordinates in the planner.</p>
                         </div>
                     </div>
                     <div class="flex flex-col items-center text-center space-y-4 group">
@@ -248,8 +211,8 @@
                             <span class="text-transparent bg-clip-text bg-gradient-to-tr from-indigo-400 to-purple-400">5</span>
                         </div>
                         <div class="space-y-1">
-                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase">Auto Publish</h3>
-                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto">Relax as our automatic node daemon dispatches items accurately.</p>
+                            <h3 class="font-display font-bold text-sm text-zinc-200 tracking-wide uppercase m-0">Auto Publish</h3>
+                            <p class="text-zinc-400 text-[11px] leading-relaxed max-w-[180px] mx-auto m-0">Relax as our automatic node daemon dispatches items accurately.</p>
                         </div>
                     </div>
                 </div>
@@ -260,34 +223,34 @@
     <section id="tech" class="py-20 px-6 lg:px-12 bg-zinc-950/40 border-t border-zinc-900/60 relative z-10">
         <div class="max-w-7xl mx-auto text-center space-y-12">
             <div class="space-y-3">
-                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">BUILT WITH MODERN TECHNOLOGY</span>
-                <h2 class="font-display font-medium text-base text-zinc-400 uppercase tracking-widest">High Performance Architecture Stack</h2>
+                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">BUILT WITH MODERN TECHNOLOGY</span>
+                <h2 class="font-display font-medium text-base text-zinc-400 uppercase tracking-widest m-0">High Performance Architecture Stack</h2>
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-4 lg:gap-6 max-w-4xl mx-auto">
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-brands fa-react text-[#61dafb]"></i><span>React</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>React</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-solid fa-code text-[#3178c6]"></i><span>TypeScript</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>TypeScript</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-solid fa-bolt text-[#646cff]"></i><span>Vite</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>Vite</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-solid fa-mobile-screen text-[#119eff]"></i><span>Capacitor</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>Capacitor</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-solid fa-brain text-[#4285f4]"></i><span>Google AI Studio</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>Google AI Studio</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-brands fa-telegram text-[#229ed9]"></i><span>Telegram API</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>Telegram API</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-solid fa-server text-[#34a853]"></i><span>Cloud Run</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>Cloud Run</span>
                 </div>
                 <div class="py-3 px-6 rounded-2xl bg-[#090a10] border border-zinc-800 hover:border-indigo-500/20 shadow-md flex items-center gap-3 text-xs font-mono text-zinc-300 uppercase select-none">
-                    <i class="fa-brands fa-github text-white"></i><span>GitHub Stack</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span><span>GitHub Stack</span>
                 </div>
             </div>
         </div>
@@ -296,56 +259,56 @@
     <section id="pricing" class="py-24 px-6 lg:px-12 bg-[#090a10]/40 border-t border-zinc-900/60 relative z-10">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-12 space-y-4">
-                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">PRICING PLANS</span>
-                <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight">Predictable Plans, Endless Flow.</h2>
+                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">PRICING PLANS</span>
+                <h2 class="font-display font-black text-3xl md:text-5xl text-zinc-100 tracking-tight m-0">Predictable Plans, Endless Flow.</h2>
                 
                 <div class="flex items-center justify-center gap-3 pt-4">
-                    <span class="text-xs font-medium text-zinc-400" id="billing-monthly-text">Monthly billing</span>
-                    <button id="billing-toggle" class="w-12 h-6 bg-zinc-800 rounded-full p-1 transition-all duration-300 relative focus:outline-none">
+                    <span id="monthly-label" class="text-xs font-medium transition-colors text-indigo-400">Monthly billing</span>
+                    <button id="price-toggle" class="w-12 h-6 bg-zinc-800 rounded-full p-1 transition-all duration-300 relative focus:outline-none cursor-pointer">
                         <div id="toggle-dot" class="w-4 h-4 bg-indigo-400 rounded-full transition-all duration-300 transform translate-x-0"></div>
                     </button>
-                    <span class="text-xs font-medium text-zinc-500" id="billing-yearly-text">Yearly saved (20% off)</span>
+                    <span id="yearly-label" class="text-xs font-medium transition-colors text-zinc-500">Yearly saved (20% off)</span>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div class="glass-panel p-8 rounded-[32px] border border-white/5 flex flex-col justify-between relative">
+                <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[32px] border border-white/5 flex flex-col justify-between relative">
                     <div>
-                        <h3 class="text-xs font-mono tracking-widest text-zinc-400 uppercase mb-2">Standard</h3>
+                        <h3 class="text-xs font-mono tracking-widest text-zinc-400 uppercase mb-2 m-0">Standard</h3>
                         <div class="flex items-baseline gap-1 mb-6">
                             <span class="text-4xl font-black text-white">$0</span>
                             <span class="text-zinc-500 text-xs">/ forever</span>
                         </div>
-                        <p class="text-zinc-400 text-xs mb-6">Test the core coordination workflows and automated content logs with absolute ease.</p>
-                        <hr class="border-zinc-900 mb-6">
-                        <ul class="space-y-3.5 text-xs text-zinc-300">
+                        <p class="text-zinc-400 text-xs mb-6 m-0">Test the core coordination workflows and automated content logs with absolute ease.</p>
+                        <hr class="border-zinc-900 mb-6" />
+                        <ul class="space-y-3.5 text-xs text-zinc-300 p-0 list-none">
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>1 Active Telegram Channel Link</li>
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Standard Draft Management</li>
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Manual Single Node Scheduling</li>
-                            <li class="flex items-center gap-3 text-zinc-600"><i class="fa-solid fa-xmark"></i>Advanced AI Assist layers</li>
+                            <li class="flex items-center gap-3 text-zinc-600"><i class="fa-solid fa-xmark text-[13px] w-3.5 text-center"></i>Advanced AI Assist layers</li>
                         </ul>
                     </div>
-                    <button class="w-full mt-8 py-3 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all">Get Started Free</button>
+                    <button class="w-full mt-8 py-3 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer">Get Started Free</button>
                 </div>
 
-                <div class="glass-panel p-8 rounded-[32px] border border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.15)] flex flex-col justify-between relative overflow-hidden">
+                <div class="bg-[rgba(18,20,32,0.5)] backdrop-blur-xl p-8 rounded-[32px] border border-indigo-500/30 shadow-[0_0_30px_rgba(99,102,241,0.15)] flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute top-4 right-4 bg-indigo-500/20 text-indigo-300 font-mono text-[9px] font-bold tracking-widest uppercase py-1 px-2.5 rounded-full border border-indigo-500/35">POPULAR</div>
                     <div>
-                        <h3 class="text-xs font-mono tracking-widest text-indigo-400 uppercase mb-2">Professional Pro</h3>
+                        <h3 class="text-xs font-mono tracking-widest text-indigo-400 uppercase mb-2 m-0">Professional Pro</h3>
                         <div class="flex items-baseline gap-1 mb-6">
-                            <span class="text-4xl font-black text-white" id="pro-price">$19</span>
-                            <span class="text-zinc-500 text-xs" id="pro-period">/ month</span>
+                            <span id="pro-price" class="text-4xl font-black text-white">$19</span>
+                            <span id="pro-period" class="text-zinc-500 text-xs"> / month</span>
                         </div>
-                        <p class="text-zinc-400 text-xs mb-6">Unlock complete automation scalability limits, device syncing coordinates, and AI layers.</p>
-                        <hr class="border-zinc-900 mb-6">
-                        <ul class="space-y-3.5 text-xs text-zinc-300">
+                        <p class="text-zinc-400 text-xs mb-6 m-0">Unlock complete automation scalability limits, device syncing coordinates, and AI layers.</p>
+                        <hr class="border-zinc-900 mb-6" />
+                        <ul class="space-y-3.5 text-xs text-zinc-300 p-0 list-none">
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Unlimited Bot Channels & Links</li>
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Smart AI Generation Pipelines</li>
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Multi-Device Workspace Sync</li>
                             <li class="flex items-center gap-3"><i class="fa-solid fa-check text-indigo-400"></i>Priority Dispatch Queue Routing</li>
                         </ul>
                     </div>
-                    <button class="w-full mt-8 py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all">Upgrade To Pro</button>
+                    <button class="w-full mt-8 py-3 px-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-[0_0_15px_rgba(99,102,241,0.3)] transition-all cursor-pointer">Upgrade To Pro</button>
                 </div>
             </div>
         </div>
@@ -353,36 +316,36 @@
 
     <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto border-t border-zinc-900/60 relative z-10">
         <div class="text-center mb-16 space-y-3">
-            <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">QUESTIONS & ANSWERS</span>
-            <h2 class="font-display font-black text-3xl text-zinc-100 tracking-tight">Frequently Answered Logistics</h2>
+            <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">QUESTIONS & ANSWERS</span>
+            <h2 class="font-display font-black text-3xl text-zinc-100 tracking-tight m-0">Frequently Answered Logistics</h2>
         </div>
 
-        <div class="space-y-4" id="faq-accordion">
+        <div class="space-y-4">
             <div class="border border-zinc-900 rounded-2xl bg-zinc-950/20 overflow-hidden">
-                <button class="faq-btn w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none">
+                <button onclick="toggleFaq(0)" class="w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none cursor-pointer">
                     <span>How does Telegram automation work?</span>
-                    <i class="fa-solid fa-chevron-down transition-transform text-zinc-500 text-xs"></i>
+                    <i id="faq-icon-0" class="fa-solid fa-chevron-down text-zinc-500 transition-transform duration-300"></i>
                 </button>
-                <div class="faq-content max-h-0 transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed">
-                    <p class="pb-6">SAMTECH FLOW integrates securely with the Telegram Bot API. By supplying your standard HTTP API Bot Token, our engine links up directly to your desired channels, dispatching scheduled drafts and content nodes fully automatically with real-time logging.</p>
+                <div id="faq-ans-0" class="transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed max-h-0">
+                    <p class="m-0 pb-6">SAMTECH FLOW integrates securely with the Telegram Bot API. By supplying your standard HTTP API Bot Token, our engine links up directly to your desired channels, dispatching scheduled drafts and content nodes fully automatically with real-time logging.</p>
                 </div>
             </div>
             <div class="border border-zinc-900 rounded-2xl bg-zinc-950/20 overflow-hidden">
-                <button class="faq-btn w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none">
+                <button onclick="toggleFaq(1)" class="w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none cursor-pointer">
                     <span>Is my data secure with SamTech Flow?</span>
-                    <i class="fa-solid fa-chevron-down transition-transform text-zinc-500 text-xs"></i>
+                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-zinc-500 transition-transform duration-300"></i>
                 </button>
-                <div class="faq-content max-h-0 transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed">
-                    <p class="pb-6">Yes. All security coordinates, including your bot tokens, credentials, and scheduled queues, are encrypted and stored locally in standard browser sandboxes or server-side environment variables. We never store or track your personal API payloads.</p>
+                <div id="faq-ans-1" class="transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed max-h-0">
+                    <p class="m-0 pb-6">Yes. All security coordinates, including your bot tokens, credentials, and scheduled queues, are encrypted and stored locally in standard browser sandboxes or server-side environment variables. We never store or track your personal API payloads.</p>
                 </div>
             </div>
             <div class="border border-zinc-900 rounded-2xl bg-zinc-950/20 overflow-hidden">
-                <button class="faq-btn w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none">
+                <button onclick="toggleFaq(2)" class="w-full p-6 text-left flex items-center justify-between text-zinc-200 font-bold text-sm uppercase tracking-wide focus:outline-none cursor-pointer">
                     <span>Can I schedule posts in advance?</span>
-                    <i class="fa-solid fa-chevron-down transition-transform text-zinc-500 text-xs"></i>
+                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-zinc-500 transition-transform duration-300"></i>
                 </button>
-                <div class="faq-content max-h-0 transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed">
-                    <p class="pb-6">Absolutely! The system features a multi-timezone, smart scheduling queue that allows you to specify precise execution dates, hours, and delivery methods. The core daemon handles background dispatching precisely when scheduled.</p>
+                <div id="faq-ans-2" class="transition-all duration-300 ease-in-out overflow-hidden px-6 text-zinc-400 text-xs leading-relaxed max-h-0">
+                    <p class="m-0 pb-6">Absolutely! The system features a multi-timezone, smart scheduling queue that allows you to specify precise execution dates, hours, and delivery methods. The core daemon handles background dispatching precisely when scheduled.</p>
                 </div>
             </div>
         </div>
@@ -391,120 +354,114 @@
     <section id="contact" class="py-24 px-6 lg:px-12 bg-[#090a10]/40 border-t border-zinc-900/60 relative z-10">
         <div class="max-w-md mx-auto">
             <div class="text-center mb-10 space-y-3">
-                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase">SECURE COORDINATES CHANNEL</span>
-                <h2 class="font-display font-black text-2xl text-zinc-100 tracking-tight uppercase">Get In Touch</h2>
+                <span class="text-xs font-mono font-bold tracking-[0.25em] text-indigo-400 uppercase block">SECURE COORDINATES CHANNEL</span>
+                <h2 class="font-display font-black text-2xl text-zinc-100 tracking-tight uppercase m-0">Get In Touch</h2>
             </div>
 
-            <form id="contact-form" class="space-y-5">
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
                 <div>
                     <label class="block font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-1.5">Your Name</label>
-                    <input type="text" required class="w-full bg-[#050508] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-indigo-500/50 transition-all">
+                    <input type="text" required class="w-full bg-[#050508] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-indigo-500/50 transition-all" />
                 </div>
                 <div>
                     <label class="block font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-1.5">Email Interface Link</label>
-                    <input type="email" required class="w-full bg-[#050508] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-indigo-500/50 transition-all">
+                    <input type="email" required class="w-full bg-[#050508] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-indigo-500/50 transition-all" />
                 </div>
                 <div>
                     <label class="block font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-1.5">Secure Payload Message</label>
                     <textarea rows="4" required class="w-full bg-[#050508] border border-zinc-800 rounded-xl px-4 py-3 text-xs text-zinc-200 focus:outline-none focus:border-indigo-500/50 transition-all resize-none"></textarea>
                 </div>
-                <button type="submit" id="form-submit-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2">
+                <button type="submit" id="submit-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer">
                     <span>Transmit Message</span>
                     <i class="fa-solid fa-paper-plane text-[10px]"></i>
                 </button>
             </form>
-            <div id="form-success-alert" class="hidden mt-4 p-4 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 rounded-xl text-center text-xs font-medium">
-                <i class="fa-solid fa-circle-check mr-2"></i>Secure message payload dispatched perfectly.
+            <div id="form-success" class="hidden p-4 bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 rounded-xl text-center text-xs font-medium animate-pulse">
+                Secure message payload dispatched perfectly.
             </div>
         </div>
     </section>
 
     <footer class="py-12 border-t border-zinc-950 px-6 lg:px-12 text-center text-zinc-600 font-mono text-[10px] tracking-wider relative z-10">
-        <p>&copy; 2026 SAMTECH FLOW ECOSYSTEM. ALL WORKSPACES PRIVATELY SECURED.</p>
+        <p class="m-0">&copy; 2026 SAMTECH FLOW ECOSYSTEM. ALL WORKSPACES PRIVATELY SECURED.</p>
     </footer>
 
     <script>
-        // 1. Dual-Tier Pricing Toggle Logic State
-        const billingToggle = document.getElementById('billing-toggle');
+        // 1. Interactive Pricing Switch
+        let isYearly = false;
+        const toggleBtn = document.getElementById('price-toggle');
         const toggleDot = document.getElementById('toggle-dot');
+        const monthlyLabel = document.getElementById('monthly-label');
+        const yearlyLabel = document.getElementById('yearly-label');
         const proPrice = document.getElementById('pro-price');
         const proPeriod = document.getElementById('pro-period');
-        const billingMonthly = document.getElementById('billing-monthly-text');
-        const billingYearly = document.getElementById('billing-yearly-text');
-        let isYearly = false;
 
-        billingToggle.addEventListener('click', () => {
+        toggleBtn.addEventListener('click', () => {
             isYearly = !isYearly;
             if (isYearly) {
-                toggleDot.classList.replace('translate-x-0', 'translate-x-6');
-                proPrice.textContent = '$15';
-                proPeriod.textContent = ' / month (billed annually)';
-                billingYearly.classList.replace('text-zinc-500', 'text-indigo-400');
-                billingMonthly.classList.replace('text-indigo-400', 'text-zinc-500');
+                toggleDot.classNames = "";
+                toggleDot.style.transform = "translateX(24px)";
+                monthlyLabel.classList.replace('text-indigo-400', 'text-zinc-500');
+                yearlyLabel.classList.replace('text-zinc-500', 'text-indigo-400');
+                proPrice.innerText = "$15";
+                proPeriod.innerText = " / month (billed annually)";
             } else {
-                toggleDot.classList.replace('translate-x-6', 'translate-x-0');
-                proPrice.textContent = '$19';
-                proPeriod.textContent = ' / month';
-                billingMonthly.classList.replace('text-zinc-500', 'text-indigo-400');
-                billingYearly.classList.replace('text-indigo-400', 'text-zinc-500');
+                toggleDot.style.transform = "translateX(0px)";
+                monthlyLabel.classList.replace('text-zinc-500', 'text-indigo-400');
+                yearlyLabel.classList.replace('text-indigo-400', 'text-zinc-500');
+                proPrice.innerText = "$19";
+                proPeriod.innerText = " / month";
             }
         });
 
-        // 2. Dynamic FAQ Accordion Dropdowns Engine
-        document.querySelectorAll('.faq-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const container = btn.parentElement;
-                const content = container.querySelector('.faq-content');
-                const icon = btn.querySelector('i');
-                const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-
-                // Close all loops synchronously
-                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = null);
-                document.querySelectorAll('.faq-btn i').forEach(i => i.classList.remove('rotate-180'));
-
-                if (!isOpen) {
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    icon.classList.add('rotate-180');
+        // 2. FAQ Accordion Actions
+        let activeFaq = null;
+        function toggleFaq(index) {
+            if (activeFaq === index) {
+                document.getElementById(`faq-ans-${index}`).style.maxHeight = '0px';
+                document.getElementById(`faq-icon-${index}`).style.transform = 'rotate(0deg)';
+                activeFaq = null;
+            } else {
+                if (activeFaq !== null) {
+                    document.getElementById(`faq-ans-${activeFaq}`).style.maxHeight = '0px';
+                    document.getElementById(`faq-icon-${activeFaq}`).style.transform = 'rotate(0deg)';
                 }
-            });
-        });
+                document.getElementById(`faq-ans-${index}`).style.maxHeight = '160px';
+                document.getElementById(`faq-icon-${index}`).style.transform = 'rotate(180deg)';
+                activeFaq = index;
+            }
+        }
 
-        // 3. Contact Form Submission Telemetry Pipeline Simulation
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('form-submit-btn');
-        const successAlert = document.getElementById('form-success-alert');
-
-        form.addEventListener('submit', (e) => {
+        // 3. Simulated Transmission Submit Handling
+        function handleFormSubmit(e) {
             e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Transmitting...</span><i class="fa-solid fa-circle-notch animate-spin"></i>';
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span>Transmitting...</span><i class="fa-solid fa-circle-notch animate-spin text-[11px]"></i>';
             
             setTimeout(() => {
-                form.reset();
-                submitBtn.style.display = 'none';
-                successAlert.classList.remove('hidden');
+                document.getElementById('contact-form').classList.add('hidden');
+                document.getElementById('form-success').classList.remove('hidden');
             }, 1800);
-        });
+        }
 
-        // 4. Client Scroll Spy Header Synchronizer Navigation Highlight Engine
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-
+        // 4. Scroll Tracking (Scrollspy) Highlights
         window.addEventListener('scroll', () => {
-            let currentSection = 'home';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 140) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
+            const sections = ['home', 'features', 'how-it-works', 'tech', 'pricing', 'contact'];
+            const scrollPosition = window.scrollY + 160;
 
-            navLinks.forEach(link => {
-                link.classList.remove('text-indigo-400', 'drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]', 'border-indigo-500');
-                link.classList.add('text-zinc-400', 'border-transparent');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.remove('text-zinc-400', 'border-transparent');
-                    link.classList.add('text-indigo-400', 'drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]', 'border-indigo-500');
+            sections.forEach(section => {
+                const el = document.getElementById(section);
+                if (el) {
+                    const top = el.offsetTop;
+                    const height = el.offsetHeight;
+                    const link = document.querySelector(`[data-section="${section}"]`);
+                    
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        link.className = "nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.5)] border-indigo-500";
+                    } else {
+                        link.className = "nav-link text-[11px] font-black tracking-widest uppercase py-1.5 transition-all border-b-2 text-zinc-400 hover:text-zinc-200 border-transparent";
+                    }
                 }
             });
         });
