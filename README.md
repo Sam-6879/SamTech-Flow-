@@ -6,7 +6,7 @@ SamTech Flow is a simple AI-powered web application built using Google AI Studio
 
 ## 🌐 Live App
 Click here to open the app:  
-https://ais-pre-i2albyunh5goiqgneu5zln-980552800811.europe-west2.run.app/https:/ais-pre-i2albyunh5goiqgneu5zln-980552800811.europe-west2.run.app/
+https://ais-pre-i2albyunh5goiqgneu5zln-980552800811.europe-west2.run.app/
 
 ---
 
